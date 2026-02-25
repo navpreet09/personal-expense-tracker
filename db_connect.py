@@ -1,11 +1,15 @@
+from dotenv import load_dotenv
+import os
 import psycopg2
 
+load_dotenv()
+
 conn = psycopg2.connect(
-    host="bztoxujq8fekhvlwqwzr-postgresql.services.clever-cloud.com",
-    database="bztoxujq8fekhvlwqwzr",
-    user="uns7rtguhxxta5mtbgdh",
-    password="0LBu74rl2Zr0Gl6eBbJVmOYUlSXkid",
-    port="5432",
+    host=os.getenv("DB_HOST"),
+    database=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    port=os.getenv("DB_PORT"),
     sslmode="require"
 )
 
