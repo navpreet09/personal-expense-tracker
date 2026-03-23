@@ -12,31 +12,4 @@ conn = psycopg2.connect(
     sslmode="require"
 )
 
-print("Connected successfully!")
-cur = conn.cursor()
 
-cur.execute("""
-CREATE TABLE IF NOT EXISTS expenses (
-    id SERIAL PRIMARY KEY,
-    amount DECIMAL NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    date DATE NOT NULL
-);
-""")
-conn.commit()
-print("Table created successfully!")
-
-cur.execute("""
-INSERT INTO expenses (amount, category, date)
-VALUES (25.50, 'Food', '2026-02-25');
-""")
-conn.commit()
-
-cur.execute("SELECT * FROM expenses;")
-rows = cur.fetchall()
-
-for row in rows:
-    print(row)
-
-cur.close()
-conn.close()
