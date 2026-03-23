@@ -27,3 +27,21 @@ class ExpenseRepository:
 
         cur.close()
         return expenses
+    
+    def get_expenses_by_category(self, category):
+        cur = conn.cursor()
+
+        cur.execute(
+            "SELECT amount, category, date FROM expenses WHERE category = %s",
+            (category,)
+        )
+
+        rows = cur.fetchall()
+
+        expenses = []
+        for row in rows:
+            expense = Expense(row[0], row[1], row[2])
+            expenses.append(expense)
+
+        cur.close()
+        return expenses
