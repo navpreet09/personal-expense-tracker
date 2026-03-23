@@ -1,5 +1,6 @@
 from repository import ExpenseRepository
 from models import Expense
+from strategies import MonthlySummaryStrategy
 
 repo = ExpenseRepository()
 
@@ -30,6 +31,21 @@ elif choice == "2":
         print("\nYour expenses:")
         for e in expenses:
             print(f"Amount: {e.amount}, Category: {e.category}, Date: {e.date}")
+
+elif choice == "3":
+    month = int(input("Enter month (1-12): "))
+    year = int(input("Enter year (YYYY): "))
+
+    expenses = repo.get_expenses_by_month(month, year)
+
+    if not expenses:
+        print("No expenses found for this month.")
+    else:
+        strategy = MonthlySummaryStrategy()
+        summary = strategy.generate_summary(expenses)
+
+        print("\nMonthly total:")
+        print(summary)
 
 elif choice == "4":
     category = input("Enter category to filter: ")
