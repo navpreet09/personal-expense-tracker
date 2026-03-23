@@ -30,3 +30,15 @@ elif choice == "2":
         print("\nYour expenses:")
         for e in expenses:
             print(f"Amount: {e.amount}, Category: {e.category}, Date: {e.date}")
+
+elif choice == "4":
+    category = input("Enter category to filter: ")
+
+    expenses = repo.get_expenses_by_category(category)
+
+    if not expenses:
+        print("No expenses found for this category.")
+    else:
+        print("\nFiltered expenses:")
+        for e in expenses:
+            print(f"Amount: {e.amount}, Category: {e.category}, Date: {e.date}")
