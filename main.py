@@ -75,3 +75,6 @@ elif choice == "5":
 
         email = input("Enter email to send summary: ")
         email_service.send_summary(email, summary)
+
+else:
+    print("Invalid choice.")
