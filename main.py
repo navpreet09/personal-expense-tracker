@@ -20,3 +20,13 @@ if choice == "1":
     repo.add_expense(expense)
 
     print("Expense added successfully.")
+
+elif choice == "2":
+    expenses = repo.get_all_expenses()
+
+    if not expenses:
+        print("No expenses found.")
+    else:
+        print("\nYour expenses:")
+        for e in expenses:
+            print(f"Amount: {e.amount}, Category: {e.category}, Date: {e.date}")
