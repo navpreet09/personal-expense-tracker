@@ -3,6 +3,19 @@ from models import Expense
 
 class ExpenseRepository:
 
+    def create_table(self):
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS expenses (
+                id SERIAL PRIMARY KEY,
+                amount DECIMAL NOT NULL,
+                category VARCHAR(50),
+                date DATE
+            )
+        """)
+        conn.commit()
+        cur.close()    
+        
     def add_expense(self, expense):
         cur = conn.cursor()
 
