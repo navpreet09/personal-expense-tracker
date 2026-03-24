@@ -4,6 +4,7 @@ from strategies import MonthlySummaryStrategy
 from email_service import EmailService
 
 repo = ExpenseRepository()
+repo.create_table()
 email_service = EmailService()
 
 print("1. Add expense")
