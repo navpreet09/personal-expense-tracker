@@ -1,6 +1,6 @@
 from repository import ExpenseRepository
 from models import Expense
-from strategies import MonthlySummaryStrategy
+from strategies import MonthlySummaryStrategy, TotalSummaryStrategy
 from email_service import EmailService
 
 repo = ExpenseRepository()
@@ -11,7 +11,7 @@ print("1. Add expense")
 print("2. View expenses")
 print("3. Generate monthly total")
 print("4. Filter expenses by category")
-print("5. Send monthly summary")
+print("5. Send total summary email")
 
 choice = input("Choose an option: ")
 
@@ -63,12 +63,29 @@ elif choice == "4":
             print(f"Amount: {e.amount}, Category: {e.category}, Date: {e.date}")
 
 elif choice == "5":
-    expenses = repo.get_all_expenses()
+    print("Choose summary type:")
+    print("1. Total summary")
+    print("2. Monthly summary")
+
+    summary_choice = input("Enter choice: ")
+
+    if summary_choice == "1":
+        expenses = repo.get_all_expenses()
+        strategy = TotalSummaryStrategy()
+
+    elif summary_choice == "2":
+        month = int(input("Enter month (1-12): "))
+        year = int(input("Enter year (YYYY): "))
+        expenses = repo.get_expenses_by_month(month, year)
+        strategy = MonthlySummaryStrategy()
+
+    else:
+        print("Invalid choice.")
+        exit()
 
     if not expenses:
-        print("No expenses available to summarize.")
+        print("No expenses available.")
     else:
-        strategy = MonthlySummaryStrategy()
         summary = strategy.generate_summary(expenses)
 
         print("\nSummary:")
