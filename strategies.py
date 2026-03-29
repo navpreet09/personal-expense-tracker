@@ -1,8 +1,9 @@
+# Strategy pattern: defines different behaviors for generating summaries
 class SummaryStrategy:
     def generate_summary(self, expenses):
         pass
 
-class MonthlySummaryStrategy:
+class MonthlySummaryStrategy(SummaryStrategy):
 
     def generate_summary(self, expenses):
         total = 0
