@@ -1,3 +1,5 @@
+# Handles database operations related to expenses.
+# Wrapped in try-except to prevent application crash on DB failure.
 from db_connect import conn
 from models import Expense
 

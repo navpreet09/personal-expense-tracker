@@ -1,3 +1,5 @@
+# Entry point of the application
+# Handles user interaction and calls appropriate services
 from repository import ExpenseRepository
 from models import Expense
 from strategies import MonthlySummaryStrategy, TotalSummaryStrategy

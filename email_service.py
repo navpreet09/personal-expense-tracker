@@ -1,3 +1,5 @@
+# Sends summary email using SendGrid API
+# External service may fail, so exceptions are handled to prevent app crash. Email content is simple text for compatibility.
 import os
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
